@@ -40,10 +40,10 @@ public class BaseTest {
         if ("true".equals(headless)) {
             chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200",
                                        "--ignore-certificate-errors");
-            driver = new RemoteWebDriver(new URL("https://www.selenium.dev/"), chromeOptions);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         } else {
             chromeOptions.addArguments("-start-maximized");
-            driver = new RemoteWebDriver(new URL("https://www.selenium.dev/"), chromeOptions);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         }
         applyProperties();
     }
