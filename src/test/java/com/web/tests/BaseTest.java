@@ -39,8 +39,6 @@ public class BaseTest {
 
         ChromeOptions chromeOptions = new ChromeOptions();
         if ("true".equals(headless)) {
-            chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200",
-                                       "--ignore-certificate-errors");
             chromeOptions.setCapability(VERSION, "88.0.4324.96");
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         } else {
