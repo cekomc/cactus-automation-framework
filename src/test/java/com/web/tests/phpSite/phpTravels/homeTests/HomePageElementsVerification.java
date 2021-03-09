@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class HomePageElementsVerification extends BasePhpTest {
 
-    @Test
+    //@Test
     public void verifyNewsDivAppears() {
         HomePage homePage = getHomePage();
         String nameOfTheElement;
@@ -17,14 +17,14 @@ public class HomePageElementsVerification extends BasePhpTest {
         Assert.assertTrue(nameOfTheElement.equalsIgnoreCase("News"));
     }
 
-    @Test
+   // @Test
     public void verifyGlobalIconSymbols() {
         HomePage homePage = getHomePage();
 
         homePage.verifyThatGlobalIconAppears();
     }
 
-    @Test
+   // @Test
     public void verifySiteNavigationContainer() {
         HomePage homePage = getHomePage();
 
