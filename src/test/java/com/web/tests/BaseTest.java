@@ -42,7 +42,6 @@ public class BaseTest {
             chromeOptions.setCapability(VERSION, "88.0.4324.96");
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         } else {
-            chromeOptions.addArguments("-start-maximized");
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         }
         applyProperties();
