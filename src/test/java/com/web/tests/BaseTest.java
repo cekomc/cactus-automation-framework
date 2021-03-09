@@ -1,9 +1,7 @@
 package com.web.tests;
 
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +15,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
+
+import static org.openqa.selenium.remote.CapabilityType.VERSION;
 
 public class BaseTest {
 
@@ -38,14 +38,14 @@ public class BaseTest {
         String headless = appProperties.getProperty("headless");
 
         ChromeOptions chromeOptions = new ChromeOptions();
-        Capabilities chromeCapabilities = DesiredCapabilities.chrome();
         if ("true".equals(headless)) {
             chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200",
                                        "--ignore-certificate-errors");
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);
+            chromeOptions.setCapability(VERSION, "88.0.4324.96");
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         } else {
             chromeOptions.addArguments("-start-maximized");
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         }
         applyProperties();
     }
@@ -76,7 +76,7 @@ public class BaseTest {
         }
     }
 
-    protected void applyProperties() {
+    protected void  applyProperties() {
         userName = appProperties.getProperty("userName.signIn");
         password = appProperties.getProperty("password.signIn");
         url = appProperties.getProperty("app.server.hostname.site");
