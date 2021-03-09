@@ -1,9 +1,8 @@
 package com.web.tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
@@ -13,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 public class BaseTest {
@@ -25,7 +26,7 @@ public class BaseTest {
     private Properties appProperties = new Properties();
 
     @BeforeTest
-    public void initialize() {
+    public void initialize() throws MalformedURLException {
         try (InputStream inputStream = getClass().getResourceAsStream("/config.properties")) {
             appProperties.load(inputStream);
         } catch (IOException e) {
@@ -34,16 +35,15 @@ public class BaseTest {
         }
         String headless = appProperties.getProperty("headless");
 
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
 
         if ("true".equals(headless)) {
             chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200",
                                        "--ignore-certificate-errors");
-            driver = new ChromeDriver(chromeOptions);
+            driver = new RemoteWebDriver(new URL("https://www.selenium.dev/"), chromeOptions);
         } else {
             chromeOptions.addArguments("-start-maximized");
-            driver = new ChromeDriver();
+            driver = new RemoteWebDriver(new URL("https://www.selenium.dev/"), chromeOptions);
         }
         applyProperties();
     }
