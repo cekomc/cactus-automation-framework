@@ -1,7 +1,10 @@
 package com.web.tests;
 
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +18,6 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-
-import static org.openqa.selenium.remote.CapabilityType.VERSION;
 
 public class BaseTest {
 
@@ -38,8 +39,16 @@ public class BaseTest {
         String headless = appProperties.getProperty("headless");
 
         ChromeOptions chromeOptions = new ChromeOptions();
+
+        ChromeOptions options = new ChromeOptions();
+
+        options.setCapability(CapabilityType.PLATFORM_NAME, Platform.MAC);
+
+        options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
+
+        options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+
         if ("true".equals(headless)) {
-            chromeOptions.setCapability(VERSION, "88.0.4324.96");
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         } else {
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
