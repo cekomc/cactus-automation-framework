@@ -1,5 +1,6 @@
 package com.web.tests;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -35,6 +36,10 @@ public class BaseTest {
         }
         String headless = appProperties.getProperty("headless");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        capabilities.setBrowserName("chrome");
+        capabilities.setPlatform(Platform.valueOf("LINUX"));
+        capabilities.setVersion("69.0.3497.100");
+
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
     }
