@@ -1,6 +1,5 @@
 package com.web.tests;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -20,7 +19,7 @@ import java.util.Properties;
 public class BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
-    private RemoteWebDriver driver;
+    private WebDriver driver;
     protected String userName;
     protected String password;
     protected String url;
@@ -34,10 +33,7 @@ public class BaseTest {
             LOGGER.info("Unable to find config.properties");
             e.printStackTrace();
         }
-        String headless = appProperties.getProperty("headless");
-        DesiredCapabilities capabilities = new DesiredCapabilities("chrome", "69.0.3497.100",
-                                                                   Platform.valueOf("LINUX"));
-
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
     }
