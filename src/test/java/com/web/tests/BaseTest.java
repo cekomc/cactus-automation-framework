@@ -35,10 +35,8 @@ public class BaseTest {
             e.printStackTrace();
         }
         String headless = appProperties.getProperty("headless");
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        capabilities.setBrowserName("chrome");
-        capabilities.setPlatform(Platform.valueOf("LINUX"));
-        capabilities.setVersion("69.0.3497.100");
+        DesiredCapabilities capabilities = new DesiredCapabilities("chrome", "69.0.3497.100",
+                                                                   Platform.valueOf("LINUX"));
 
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
