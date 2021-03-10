@@ -1,10 +1,7 @@
 package com.web.tests;
 
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +19,7 @@ import java.util.Properties;
 public class BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
-    private WebDriver driver;
+    private RemoteWebDriver driver;
     protected String userName;
     protected String password;
     protected String url;
@@ -37,22 +34,8 @@ public class BaseTest {
             e.printStackTrace();
         }
         String headless = appProperties.getProperty("headless");
-
-        ChromeOptions chromeOptions = new ChromeOptions();
-
-        ChromeOptions options = new ChromeOptions();
-
-        options.setCapability(CapabilityType.PLATFORM_NAME, Platform.MAC);
-
-        options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
-
-        options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-
-        if ("true".equals(headless)) {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
-        } else {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
-        }
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
     }
 
