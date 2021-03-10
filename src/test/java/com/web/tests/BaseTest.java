@@ -33,6 +33,7 @@ public class BaseTest {
             LOGGER.info("Unable to find config.properties");
             e.printStackTrace();
         }
+        System.setProperty("WebDriver.chrome.driver", "/usr/local/bin/chromedriver");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
