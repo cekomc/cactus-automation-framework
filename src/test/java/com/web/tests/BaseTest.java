@@ -2,6 +2,7 @@ package com.web.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,10 @@ public class BaseTest {
         }
         ChromeOptions options = new ChromeOptions();
 
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        capabilities.setVersion(capabilities.getVersion());
+        capabilities.setCapability("chromeOptions", options);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
     }
 
