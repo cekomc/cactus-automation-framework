@@ -37,7 +37,7 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        capabilities.setVersion(capabilities.getVersion());
+       // capabilities.setVersion("89.0.4389.23");
         capabilities.setCapability("chromeOptions", options);
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
         applyProperties();
