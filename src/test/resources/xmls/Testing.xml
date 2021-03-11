@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Testing">
+    <parameter name="environment" value="grid"></parameter>
+    <test name="AbnAttributes">
+        <classes>
+            <class name="com.web.tests.phpSite.phpTravels.homeTests.AsdTest"/>
+        </classes>
+    </test>
+</suite>
