@@ -28,7 +28,7 @@
                     <suiteXmlFiles>
                         <!-- Need to pass suiteXmlFile.xml file as argument from command line -->
                         <!--suppress UnresolvedMavenProperty -->
-                        <suiteXmlFile>src/test/resources/xmls/Suit.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/xmls/Testing.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
