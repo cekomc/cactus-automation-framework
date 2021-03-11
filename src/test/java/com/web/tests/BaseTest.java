@@ -1,7 +1,6 @@
 package com.web.tests;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
@@ -34,12 +33,13 @@ public class BaseTest {
             LOGGER.info("Unable to find config.properties");
             e.printStackTrace();
         }
-        ChromeOptions options = new ChromeOptions();
-
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-       // capabilities.setVersion("89.0.4389.23");
-        capabilities.setCapability("chromeOptions", options);
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+        try {
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
+        }catch (MalformedURLException e){
+            e.printStackTrace();
+        }
         applyProperties();
     }
 
@@ -69,13 +69,13 @@ public class BaseTest {
         }
     }
 
-    protected void  applyProperties() {
+    protected void applyProperties() {
         userName = appProperties.getProperty("userName.signIn");
         password = appProperties.getProperty("password.signIn");
         url = appProperties.getProperty("app.server.hostname.site");
     }
 
-    protected void loadUrlToTest(String projectURL){
-         getDriver().get(projectURL);
+    protected void loadUrlToTest(String projectURL) {
+        getDriver().get(projectURL);
     }
 }
