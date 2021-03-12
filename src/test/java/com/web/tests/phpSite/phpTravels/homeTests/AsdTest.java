@@ -15,6 +15,7 @@ public class AsdTest {
     public void before() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setBinary("/var/jenkins_home/.m2/repository/webdriver/chromedriver/linux64/89.0.4389.23/chromedriver");
         try {
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
         }catch (MalformedURLException e){
