@@ -1,8 +1,9 @@
 package com.web.tests.phpSite.phpTravels.homeTests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 
@@ -12,12 +13,13 @@ import java.net.URL;
 public class AsdTest {
     WebDriver driver;
 
-    public void before() throws InterruptedException {
+    public void before() {
         WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setBinary("/var/jenkins_home/.m2/repository/webdriver/chromedriver/linux64/89.0.4389.23/chromedriver");
+        DesiredCapabilities desiredCapabilities =  new DesiredCapabilities().chrome();
+
         try {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                                         (Capabilities) desiredCapabilities);
         }catch (MalformedURLException e){
             e.printStackTrace();
         }
