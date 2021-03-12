@@ -1,5 +1,6 @@
 package com.web.tests.phpSite.phpTravels.homeTests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -14,6 +15,7 @@ public class AsdTest {
     public void before(){
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
+        WebDriverManager.chromedriver().setup();
         try {
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }catch (MalformedURLException e){
@@ -26,5 +28,7 @@ public class AsdTest {
         before();
         driver.get("https://www.google.com/");
         System.out.print("I got google");
+
+        driver.quit();
     }
 }
