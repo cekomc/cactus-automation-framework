@@ -16,7 +16,7 @@ public class AsdTest {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
         WebDriverManager.chromedriver().setup();
-        Thread.sleep(10000);
+        Thread.sleep(60000);
         try {
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }catch (MalformedURLException e){
