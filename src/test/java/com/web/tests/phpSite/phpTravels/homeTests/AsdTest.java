@@ -24,8 +24,9 @@ public class AsdTest {
     }
 
     @Test
-    public void test(){
+    public void test() throws InterruptedException {
         before();
+        Thread.sleep(10000);
         driver.get("https://www.google.com/");
         System.out.print("I got google");
 
