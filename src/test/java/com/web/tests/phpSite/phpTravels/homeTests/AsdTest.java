@@ -12,10 +12,11 @@ import java.net.URL;
 public class AsdTest {
     WebDriver driver;
 
-    public void before(){
+    public void before() throws InterruptedException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setBrowserName(DesiredCapabilities.chrome().getBrowserName());
         WebDriverManager.chromedriver().setup();
+        Thread.sleep(10000);
         try {
             driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
         }catch (MalformedURLException e){
@@ -26,7 +27,6 @@ public class AsdTest {
     @Test
     public void test() throws InterruptedException {
         before();
-        Thread.sleep(10000);
         driver.get("https://www.google.com/");
         System.out.print("I got google");
 
