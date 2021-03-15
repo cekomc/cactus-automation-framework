@@ -13,11 +13,7 @@ public class AsdTest {
     public void before() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        options.addArguments("--no-proxy-server");
-        System.setProperty("webdriver.chrome.driver", "/var/jenkins_home/.cache/selenium/chromedriver/linux64/89.0.4389.23/chromedriver");
         driver = new ChromeDriver(options);
-
     }
 
     @Test
