@@ -5,7 +5,7 @@
     <parameter name="environment" value="grid"></parameter>
     <test name="AbnAttributes">
         <classes>
-            <class name="com.web.tests.phpSite.phpTravels.homeTests.AsdTest"/>
+            <class name="com.web.tests.phpSite.phpTravels.homeTests.HomePageElementsVerification"/>
         </classes>
     </test>
 </suite>
