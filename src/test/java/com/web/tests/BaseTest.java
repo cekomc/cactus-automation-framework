@@ -35,6 +35,7 @@ public class BaseTest {
         }
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-setuid-sandbox", "--no-sandbox");
         driver = new ChromeDriver(options);
 
         applyProperties();
