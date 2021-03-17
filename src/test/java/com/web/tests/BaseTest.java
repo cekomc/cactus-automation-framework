@@ -42,8 +42,10 @@ public class BaseTest {
 
         capabilities.setCapability(ChromeOptions.CAPABILITY, opt);
         try {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
-        }catch (MalformedURLException e){
+            driver = new RemoteWebDriver(new URL(
+                "https://VvGwpafo1BFkpmRfOfJOdXXxMrTxpvKa:Qhx6iCla4Qkk32pI8YmbMazoriMGEnHl@fifv6i5w-hub.gridlastic.com/wd/hub"),
+                                         capabilities);
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         applyProperties();
