@@ -2,8 +2,9 @@ package com.web.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 public class BaseTest {
@@ -34,10 +36,16 @@ public class BaseTest {
             e.printStackTrace();
         }
         WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-setuid-sandbox", "--no-sandbox");
-        driver = new ChromeDriver(options);
+        ChromeOptions opt = new ChromeOptions();
 
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+        capabilities.setCapability(ChromeOptions.CAPABILITY, opt);
+        try {
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        }catch (MalformedURLException e){
+            e.printStackTrace();
+        }
         applyProperties();
     }
 
